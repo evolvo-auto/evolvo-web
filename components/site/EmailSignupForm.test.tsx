@@ -12,5 +12,10 @@ describe("EmailSignupForm", () => {
     expect(markup).toContain("name=\"email\"");
     expect(markup).toContain("type=\"email\"");
     expect(markup).toContain("Join updates");
+    expect(markup).toContain("id=\"email-signup-status\"");
+    expect(markup).toContain("aria-live=\"polite\"");
+    expect(markup).toContain(
+      "Expect occasional notes focused on shipped work, not marketing noise.",
+    );
   });
 });
