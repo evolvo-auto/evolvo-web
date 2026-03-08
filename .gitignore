@@ -10,6 +10,7 @@
 
 # production
 /build
+/data/email-signups.json
 
 # misc
 .DS_Store
