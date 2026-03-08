@@ -19,7 +19,7 @@ vi.mock("next/link", () => ({
 }));
 
 describe("HomePage", () => {
-  it("renders the homepage narrative, workflow section, CTA, and blog preview links", () => {
+  it("renders the homepage narrative, proof section, workflow section, CTA, and blog preview links", () => {
     const [firstPost] = getAllPosts();
     const markup = renderToStaticMarkup(<HomePage />);
 
@@ -33,6 +33,9 @@ describe("HomePage", () => {
       "A normal day is issue selection, patching, review, validation, PRs, and another loop.",
     );
     expect(markup).toContain("Merge accepted work and restart on new code.");
+    expect(markup).toContain("Built by Evolvo");
+    expect(markup).toContain("evolvo-web");
+    expect(markup).toContain("https://evolvo-web.vercel.app");
     expect(markup).toContain("href=\"/blog\"");
     expect(markup).toContain(firstPost.title);
     expect(markup).toContain("Follow the progress");

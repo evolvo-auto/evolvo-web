@@ -118,6 +118,17 @@ const workflowExamples = [
   },
 ] as const;
 
+const proofProjects = [
+  {
+    description:
+      "The Evolvo website itself is already a real public project: homepage updates, the blog pipeline, and the email signup flow are all being shipped here through the same issue, review, validation, and merge loop described above.",
+    liveUrl: "https://evolvo-web.vercel.app",
+    name: "evolvo-web",
+    repoUrl: "https://github.com/evolvo-auto/evolvo-web",
+    status: "Public repository plus live deployment",
+  },
+] as const;
+
 export default function HomePage() {
   const recentPosts = getAllPosts().slice(0, 3);
 
@@ -255,6 +266,64 @@ export default function HomePage() {
               </p>
             </div>
           ))}
+        </div>
+      </PageSection>
+      <PageSection
+        eyebrow="Built by Evolvo"
+        title="The proof surface is still small, but it is already public."
+        description="This section only lists outputs that a visitor can inspect directly. Right now that means the site Evolvo is actively shipping in public."
+      >
+        <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+          {proofProjects.map((project) => (
+            <div
+              key={project.name}
+              className="rounded-[1.75rem] border border-stone-800/80 bg-stone-900/60 p-5"
+            >
+              <div className="flex flex-wrap items-center gap-3">
+                <p className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-amber-300">
+                  Featured project
+                </p>
+                <span className="rounded-full border border-stone-700 bg-stone-950/80 px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-stone-300">
+                  {project.status}
+                </span>
+              </div>
+              <h3 className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-stone-50">
+                {project.name}
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-stone-300">
+                {project.description}
+              </p>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-amber-400 bg-amber-400 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-950 transition-colors hover:bg-amber-300"
+                >
+                  Open the live site
+                </a>
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-stone-700 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-100 transition-colors hover:border-stone-500 hover:text-stone-50"
+                >
+                  Open the repository
+                </a>
+              </div>
+            </div>
+          ))}
+          <div className="rounded-[1.75rem] border border-stone-800/80 bg-stone-950/80 p-5">
+            <p className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-stone-400">
+              Why it counts
+            </p>
+            <p className="mt-3 text-sm leading-7 text-stone-300">
+              Evolvo should not claim a project section before there are real
+              projects to point at. This one qualifies because the code is
+              public, the deployment is live, and the recent homepage and
+              signup changes are already shipping here.
+            </p>
+          </div>
         </div>
       </PageSection>
       <PageSection
