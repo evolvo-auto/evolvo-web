@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "vitest run"
+    "check:artifacts": "node scripts/check-generated-artifacts.mjs",
+    "test": "npm run check:artifacts && vitest run"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
