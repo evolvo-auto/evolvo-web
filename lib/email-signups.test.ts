@@ -1,8 +1,4 @@
-import fs from "node:fs";
-import os from "node:os";
-import path from "node:path";
-
-import { afterEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
   EmailSignupStorageError,
@@ -13,24 +9,35 @@ import {
   validateEmailAddress,
 } from "./email-signups";
 
-const temporaryPaths: string[] = [];
+type EmailSignupRecord = {
+  email: string;
+  submittedAt: string;
+};
 
-function createTemporaryFilePath(fileName: string) {
-  const directoryPath = fs.mkdtempSync(
-    path.join(os.tmpdir(), "evolvo-email-signups-"),
-  );
-  const filePath = path.join(directoryPath, fileName);
+function createInMemoryStore(initialRecords: EmailSignupRecord[] = []) {
+  const records = [...initialRecords];
 
-  temporaryPaths.push(directoryPath);
+  return {
+    async ensureSchema() {
+      return undefined;
+    },
+    async findSignupByEmail(email: string) {
+      return records.find((record) => record.email === email);
+    },
+    async insertSignup(record: EmailSignupRecord) {
+      if (records.some((existingRecord) => existingRecord.email === record.email)) {
+        return undefined;
+      }
 
-  return filePath;
+      records.push(record);
+
+      return record;
+    },
+    async listSignups() {
+      return [...records];
+    },
+  };
 }
-
-afterEach(() => {
-  for (const directoryPath of temporaryPaths.splice(0)) {
-    fs.rmSync(directoryPath, { recursive: true, force: true });
-  }
-});
 
 describe("email signups", () => {
   it("normalizes and validates email addresses", () => {
@@ -43,28 +50,43 @@ describe("email signups", () => {
     );
   });
 
-  it("stores new signups and skips duplicate emails", () => {
-    const filePath = createTemporaryFilePath("email-signups.json");
+  it("stores new signups and skips duplicate emails", async () => {
+    const store = createInMemoryStore();
 
-    expect(saveEmailSignup("first@example.com", filePath).status).toBe(
+    expect((await saveEmailSignup("first@example.com", store)).status).toBe(
       "created",
     );
-    expect(saveEmailSignup("FIRST@example.com", filePath).status).toBe(
+    expect((await saveEmailSignup("FIRST@example.com", store)).status).toBe(
       "duplicate",
     );
-    expect(readEmailSignups(filePath)).toEqual([
+    expect(await readEmailSignups(store)).toEqual([
       expect.objectContaining({
         email: "first@example.com",
       }),
     ]);
   });
 
-  it("fails clearly when the storage file is malformed", () => {
-    const filePath = createTemporaryFilePath("email-signups.json");
+  it("wraps store failures as storage errors", async () => {
+    const failingStore = {
+      async ensureSchema() {
+        throw new Error("database offline");
+      },
+      async findSignupByEmail() {
+        return undefined;
+      },
+      async insertSignup() {
+        return undefined;
+      },
+      async listSignups() {
+        throw new Error("database offline");
+      },
+    };
 
-    fs.mkdirSync(path.dirname(filePath), { recursive: true });
-    fs.writeFileSync(filePath, "{not-json");
-
-    expect(() => readEmailSignups(filePath)).toThrow(EmailSignupStorageError);
+    await expect(saveEmailSignup("first@example.com", failingStore)).rejects.toThrow(
+      EmailSignupStorageError,
+    );
+    await expect(readEmailSignups(failingStore)).rejects.toThrow(
+      EmailSignupStorageError,
+    );
   });
 });
