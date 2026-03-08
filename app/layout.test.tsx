@@ -16,6 +16,19 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+vi.mock("next/image", () => ({
+  default: ({
+    alt,
+    src,
+    unoptimized: _unoptimized,
+    ...props
+  }: React.ImgHTMLAttributes<HTMLImageElement> & { src: string }) => {
+    void _unoptimized;
+
+    return React.createElement("img", { alt, src, ...props });
+  },
+}));
+
 vi.mock("next/font/google", () => ({
   IBM_Plex_Mono: () => ({
     variable: "font-ibm-plex-mono",

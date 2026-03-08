@@ -16,6 +16,19 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+vi.mock("next/image", () => ({
+  default: ({
+    alt,
+    src,
+    unoptimized: _unoptimized,
+    ...props
+  }: React.ImgHTMLAttributes<HTMLImageElement> & { src: string }) => {
+    void _unoptimized;
+
+    return React.createElement("img", { alt, src, ...props });
+  },
+}));
+
 describe("SiteShell", () => {
   it("renders the shared header, navigation, and footer content", () => {
     const markup = renderToStaticMarkup(
@@ -25,6 +38,8 @@ describe("SiteShell", () => {
     );
 
     expect(markup).toContain("Review-driven release");
+    expect(markup).toContain("Accepted diffs over prompts");
+    expect(markup).toContain("src=\"/icon.svg\"");
     expect(markup).toContain("href=\"/blog\"");
     expect(markup).toContain("GitHub repository");
     expect(markup).toContain("route content");
