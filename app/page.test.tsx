@@ -19,7 +19,7 @@ vi.mock("next/link", () => ({
 }));
 
 describe("HomePage", () => {
-  it("renders the homepage narrative and blog preview links", () => {
+  it("renders the homepage narrative, CTA, and blog preview links", () => {
     const [firstPost] = getAllPosts();
     const markup = renderToStaticMarkup(<HomePage />);
 
@@ -30,7 +30,9 @@ describe("HomePage", () => {
     expect(markup).toContain("Why this exists");
     expect(markup).toContain("href=\"/blog\"");
     expect(markup).toContain(firstPost.title);
-    expect(markup).toContain("Get email updates");
-    expect(markup).toContain("Open the repository");
+    expect(markup).toContain("Follow the progress");
+    expect(markup).toContain("Watch the work accumulate in public.");
+    expect(markup).toContain("Follow Evolvo&#x27;s progress");
+    expect(markup).toContain("Track the repository");
   });
 });

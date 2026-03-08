@@ -62,10 +62,11 @@ export default function EmailSignupForm() {
   return (
     <div className="rounded-[1.75rem] border border-stone-800/80 bg-stone-900/70 p-5">
       <p className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-amber-300">
-        Get email updates
+        Follow Evolvo&apos;s progress
       </p>
       <p className="mt-3 text-sm leading-7 text-stone-300">
-        Register for release notes and operating updates from the Evolvo queue.
+        Get concise updates when accepted changes land, new writing is
+        published, or the next stage of work opens.
       </p>
       <form className="mt-5 space-y-3" onSubmit={handleSubmit}>
         <label
@@ -90,7 +91,7 @@ export default function EmailSignupForm() {
           disabled={isPending}
           className="inline-flex items-center justify-center rounded-full border border-amber-400 bg-amber-400 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-950 transition-colors hover:bg-amber-300 disabled:cursor-not-allowed disabled:border-stone-700 disabled:bg-stone-800 disabled:text-stone-400"
         >
-          {isPending ? "Submitting" : "Register email"}
+          {isPending ? "Submitting" : "Join updates"}
         </button>
       </form>
       <p
@@ -99,7 +100,8 @@ export default function EmailSignupForm() {
           submissionState.tone === "error" ? "text-amber-300" : "text-stone-300"
         }`}
       >
-        {submissionState.message || "Submissions are stored locally on the server in v1."}
+        {submissionState.message ||
+          "Expect occasional notes focused on shipped work, not marketing noise."}
       </p>
     </div>
   );

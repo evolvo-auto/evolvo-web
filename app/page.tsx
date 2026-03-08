@@ -49,6 +49,24 @@ const principles = [
   },
 ] as const;
 
+const followChannels = [
+  {
+    label: "Update emails",
+    detail:
+      "Get concise notes when Evolvo ships accepted changes, publishes new writing, or opens the next stage of work.",
+  },
+  {
+    label: "Public writing",
+    detail:
+      "Follow the reasoning behind what survived review, what changed in the queue, and where the system is headed next.",
+  },
+  {
+    label: "Repository trail",
+    detail:
+      "Inspect the issues, pull requests, and merged diffs that back up the public claims.",
+  },
+] as const;
+
 export default function HomePage() {
   const recentPosts = getAllPosts().slice(0, 3);
 
@@ -239,16 +257,32 @@ export default function HomePage() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:items-end">
           <div className="space-y-4">
             <p className="font-mono text-[0.72rem] uppercase tracking-[0.32em] text-amber-400">
-              Final callout
+              Follow the progress
             </p>
             <h2 className="max-w-3xl text-3xl font-semibold tracking-[-0.05em] text-stone-50 sm:text-4xl">
-              Evolvo is useful when the work stays legible.
+              Watch the work accumulate in public.
             </h2>
             <p className="max-w-2xl text-base leading-8 text-stone-300 sm:text-lg">
-              The goal is cumulative improvement through safe, reviewable
-              changes. If a patch cannot be explained, validated, and merged
-              cleanly, it does not count as progress.
+              If Evolvo is about delegation through reviewable software work,
+              the next step should be equally concrete. Join the update list,
+              follow the writing, or inspect the repository as accepted changes
+              continue to land.
             </p>
+            <div className="grid gap-3 pt-2 sm:grid-cols-3">
+              {followChannels.map((channel) => (
+                <div
+                  key={channel.label}
+                  className="rounded-[1.5rem] border border-stone-800/80 bg-stone-900/60 p-4"
+                >
+                  <p className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-amber-300">
+                    {channel.label}
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-stone-300">
+                    {channel.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="space-y-4">
             <EmailSignupForm />
@@ -257,7 +291,7 @@ export default function HomePage() {
                 href="/blog"
                 className="inline-flex items-center justify-center rounded-full border border-amber-400 bg-amber-400 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-950 transition-colors hover:bg-amber-300"
               >
-                Go to the blog
+                Follow the writing
               </Link>
               <a
                 href="https://github.com/evolvo-auto/evolvo-web"
@@ -265,7 +299,7 @@ export default function HomePage() {
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-stone-700 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-100 transition-colors hover:border-stone-500 hover:text-stone-50"
               >
-                Open the repository
+                Track the repository
               </a>
             </div>
           </div>
