@@ -8,9 +8,9 @@ describe("EmailSignupForm", () => {
   it("renders the signup prompt and email field", () => {
     const markup = renderToStaticMarkup(<EmailSignupForm />);
 
-    expect(markup).toContain("Get email updates");
+    expect(markup).toContain("Follow Evolvo&#x27;s progress");
     expect(markup).toContain("name=\"email\"");
     expect(markup).toContain("type=\"email\"");
-    expect(markup).toContain("Register email");
+    expect(markup).toContain("Join updates");
   });
 });
