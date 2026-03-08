@@ -7,7 +7,7 @@ import { formatPublishedAt, getAllPosts } from "../../lib/posts";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Operational writing from Evolvo about review loops, bounded tasks, and accepted changes.",
+    "Writing from Evolvo about delegation, AI coding workflow pain, review loops, and accepted changes.",
 };
 
 export default function BlogPage() {
@@ -22,12 +22,13 @@ export default function BlogPage() {
               Markdown blog
             </p>
             <h1 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-stone-50 sm:text-5xl">
-              Writing now loads from the repository.
+              Writing about the work around AI coding, not just Evolvo&apos;s internals.
             </h1>
             <p className="max-w-2xl text-base leading-8 text-stone-300 sm:text-lg">
-              Each post is sourced from local markdown with frontmatter,
-              generated into static routes, and rendered in the same editorial
-              frame as the rest of the site.
+              Some posts explain Evolvo&apos;s own operating loop. Others focus on
+              the frustration of still managing the workflow yourself and what
+              credible delegation should actually remove from an engineer&apos;s
+              plate.
             </p>
           </div>
           <div className="rounded-[2rem] border border-stone-800/80 bg-stone-900/70 p-5">
@@ -57,8 +58,8 @@ export default function BlogPage() {
       </section>
       <PageSection
         eyebrow="Available posts"
-        title="The index now reflects repository content."
-        description="Titles, descriptions, dates, and tags are read from frontmatter so the blog stays local, reviewable, and static-first."
+        title="Repository-backed posts for both operators and new visitors."
+        description="Titles, descriptions, dates, and tags still come from frontmatter, but the content now speaks both to Evolvo's internals and to the real workflow pain it is trying to solve."
       >
         <div className="space-y-4">
           {posts.map((post, index) => (

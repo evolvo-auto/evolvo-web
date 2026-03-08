@@ -149,8 +149,10 @@ export function getAllPosts(directoryPath = postsDirectory): PostSummary[] {
     .readdirSync(directoryPath)
     .filter((fileName) => fileName.endsWith(".md"))
     .map((fileName) => readMarkdownFile(path.join(directoryPath, fileName)))
-    .sort((left, right) =>
-      right.publishedAt.localeCompare(left.publishedAt),
+    .sort(
+      (left, right) =>
+        right.publishedAt.localeCompare(left.publishedAt) ||
+        left.slug.localeCompare(right.slug),
     )
     .map((post) => ({
       title: post.title,
