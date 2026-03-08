@@ -16,6 +16,15 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+vi.mock("next/font/google", () => ({
+  IBM_Plex_Mono: () => ({
+    variable: "font-ibm-plex-mono",
+  }),
+  Space_Grotesk: () => ({
+    variable: "font-space-grotesk",
+  }),
+}));
+
 vi.mock("next/script", () => ({
   default: ({
     children,
@@ -35,7 +44,7 @@ describe("RootLayout", () => {
 
     expect(markup).toContain("href=\"/blog\"");
     expect(markup).toContain("route content");
-    expect(markup).toContain("Small, reviewable diffs");
+    expect(markup).toContain("GitHub repository");
     expect(markup).toContain("evolvo-site-jsonld");
   });
 
