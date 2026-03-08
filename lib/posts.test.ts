@@ -93,6 +93,24 @@ Body`,
     expect(formatPublishedAt("2026-03-05")).toBe("March 5, 2026");
   });
 
+  it("formats publication dates consistently across local timezones", () => {
+    const originalTimeZone = process.env.TZ;
+
+    try {
+      process.env.TZ = "America/Los_Angeles";
+      expect(formatPublishedAt("2026-03-05")).toBe("March 5, 2026");
+
+      process.env.TZ = "Pacific/Kiritimati";
+      expect(formatPublishedAt("2026-03-05")).toBe("March 5, 2026");
+    } finally {
+      if (originalTimeZone === undefined) {
+        delete process.env.TZ;
+      } else {
+        process.env.TZ = originalTimeZone;
+      }
+    }
+  });
+
   it("fails when a required frontmatter field is missing", () => {
     const directoryPath = createPostsDirectory({
       "missing-title.md": `---

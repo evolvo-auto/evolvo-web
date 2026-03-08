@@ -189,5 +189,6 @@ export function formatPublishedAt(publishedAt: string): string {
     month: "long",
     day: "numeric",
     year: "numeric",
+    timeZone: "UTC",
   }).format(new Date(publishedAt));
 }
