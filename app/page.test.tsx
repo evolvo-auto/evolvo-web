@@ -24,9 +24,10 @@ describe("HomePage", () => {
     const markup = renderToStaticMarkup(<HomePage />);
 
     expect(markup).toContain(
-      "Evolvo improves itself through reviewable work, not marketing language.",
+      "Stop choosing between coding everything yourself and manually steering an AI assistant.",
     );
-    expect(markup).toContain("Operating model");
+    expect(markup).toContain("The goal is delegation, not autocomplete.");
+    expect(markup).toContain("Why this exists");
     expect(markup).toContain("href=\"/blog\"");
     expect(markup).toContain(firstPost.title);
     expect(markup).toContain("Get email updates");
