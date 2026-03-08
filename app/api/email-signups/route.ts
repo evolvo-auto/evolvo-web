@@ -25,11 +25,11 @@ export async function POST(request: Request) {
   }
 
   try {
-    const result = saveEmailSignup(body?.email);
+    const result = await saveEmailSignup(body?.email);
 
     if (result.status === "duplicate") {
       return Response.json({
-        message: "That email is already registered for Evolvo updates.",
+        message: "You are already on the list for Evolvo updates.",
         ok: true,
         status: "duplicate",
       });
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
 
     return Response.json(
       {
-        message: "You are on the list for Evolvo updates.",
+        message: "Thanks, you are on the list for Evolvo updates.",
         ok: true,
         status: "created",
       },
