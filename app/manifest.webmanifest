@@ -1,0 +1,16 @@
+{
+  "name": "Evolvo",
+  "short_name": "Evolvo",
+  "description": "A GitHub-native software worker built to delegate real software work through issues, validation, review, and accepted diffs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0a09",
+  "theme_color": "#0c0a09",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

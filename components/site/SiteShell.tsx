@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const navigation = [
@@ -21,9 +22,28 @@ export default function SiteShell({
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   href="/"
-                  className="text-lg font-semibold uppercase tracking-[0.3em] text-stone-50 transition-colors hover:text-amber-300"
+                  aria-label="Evolvo home"
+                  className="group inline-flex items-center gap-3 rounded-full pr-2 transition-colors"
                 >
-                  Evolvo
+                  <span className="flex h-12 w-12 items-center justify-center rounded-[1.25rem] border border-amber-500/30 bg-stone-900/90 shadow-[0_0_0_1px_rgba(245,158,11,0.08),0_12px_28px_rgba(0,0,0,0.3)]">
+                    <Image
+                      src="/icon.svg"
+                      alt=""
+                      aria-hidden="true"
+                      width={44}
+                      height={44}
+                      unoptimized
+                      className="h-11 w-11"
+                    />
+                  </span>
+                  <span className="flex flex-col">
+                    <span className="font-mono text-[0.74rem] font-semibold uppercase tracking-[0.34em] text-stone-50 transition-colors group-hover:text-amber-200">
+                      Evolvo
+                    </span>
+                    <span className="text-[0.68rem] uppercase tracking-[0.28em] text-stone-500 transition-colors group-hover:text-stone-300">
+                      Accepted diffs over prompts
+                    </span>
+                  </span>
                 </Link>
                 <span className="rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.28em] text-amber-300">
                   Review-driven release

@@ -1,0 +1,21 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+>
+  <defs>
+    <linearGradient id="evolvo-ember" x1="14" y1="14" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB923C" />
+      <stop offset="1" stop-color="#FACC15" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="#120F0D" />
+  <rect x="4" y="4" width="56" height="56" rx="18" stroke="#F59E0B" stroke-opacity="0.55" stroke-width="2" />
+  <circle cx="32" cy="32" r="21" fill="#1C1917" fill-opacity="0.75" />
+  <path d="M18 20H33" stroke="url(#evolvo-ember)" stroke-width="6" stroke-linecap="round" />
+  <path d="M18 32H41" stroke="url(#evolvo-ember)" stroke-width="6" stroke-linecap="round" />
+  <path d="M18 44H33" stroke="url(#evolvo-ember)" stroke-width="6" stroke-linecap="round" />
+  <path d="M35 20L47 32L35 44" stroke="url(#evolvo-ember)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
