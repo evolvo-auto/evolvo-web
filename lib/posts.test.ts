@@ -48,6 +48,36 @@ describe("posts", () => {
     }
   });
 
+  it("sorts posts with the same publication date by slug for stable ordering", () => {
+    const directoryPath = createPostsDirectory({
+      "beta-note.md": `---
+title: Beta note
+description: Second by slug
+publishedAt: 2026-03-08
+slug: beta-note
+tags:
+  - ordering
+---
+
+Body`,
+      "alpha-note.md": `---
+title: Alpha note
+description: First by slug
+publishedAt: 2026-03-08
+slug: alpha-note
+tags:
+  - ordering
+---
+
+Body`,
+    });
+
+    expect(getAllPosts(directoryPath).map((post) => post.slug)).toEqual([
+      "alpha-note",
+      "beta-note",
+    ]);
+  });
+
   it("returns post slugs and resolves full post content by slug", () => {
     const [firstSlug] = getPostSlugs();
 
