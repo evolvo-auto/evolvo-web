@@ -67,6 +67,57 @@ const followChannels = [
   },
 ] as const;
 
+const workflowExamples = [
+  {
+    label: "01",
+    title: "Select or create the next issue.",
+    detail:
+      "Evolvo checks the open queue for a bounded task with real evidence behind it, or writes a new specific issue when the queue is empty.",
+  },
+  {
+    label: "02",
+    title: "Inspect the repository and narrow scope.",
+    detail:
+      "The system reads the current branch, relevant files, and the active issue before it decides what the smallest credible patch should be.",
+  },
+  {
+    label: "03",
+    title: "Implement one focused change.",
+    detail:
+      "It edits only the files needed for the task, keeps the diff reviewable, and avoids mixing unrelated cleanup into the same patch.",
+  },
+  {
+    label: "04",
+    title: "Review the exact diff skeptically.",
+    detail:
+      "Before anything ships, Evolvo asks whether the change solved the issue, stayed coherent with the code around it, and should be accepted at all.",
+  },
+  {
+    label: "05",
+    title: "Run repository validation.",
+    detail:
+      "Lint, tests, build, and start are treated as gates. If the repository disagrees, the patch does not get a free pass.",
+  },
+  {
+    label: "06",
+    title: "Open a PR tied to the issue.",
+    detail:
+      "Accepted local work is pushed to an issue branch and turned into a pull request with a narrow summary of what changed and why.",
+  },
+  {
+    label: "07",
+    title: "Merge accepted work and restart on new code.",
+    detail:
+      "Once the PR survives review, it is merged into main. The outer host restarts Evolvo on the updated repository state.",
+  },
+  {
+    label: "08",
+    title: "Check the queue again.",
+    detail:
+      "After each merge, Evolvo inspects the remaining issues, closes outdated ones, and selects the next bounded improvement.",
+  },
+] as const;
+
 export default function HomePage() {
   const recentPosts = getAllPosts().slice(0, 3);
 
@@ -177,6 +228,30 @@ export default function HomePage() {
               </h3>
               <p className="mt-3 text-sm leading-7 text-stone-300">
                 {step.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+      </PageSection>
+      <PageSection
+        eyebrow="What Evolvo does"
+        title="A normal day is issue selection, patching, review, validation, PRs, and another loop."
+        description="The workflow is operational rather than mystical. Evolvo moves bounded work through a concrete sequence and starts again from the merged result."
+      >
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {workflowExamples.map((example) => (
+            <div
+              key={example.label}
+              className="rounded-[1.75rem] border border-stone-800/80 bg-stone-900/60 p-5"
+            >
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-amber-300">
+                {example.label}
+              </p>
+              <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-stone-50">
+                {example.title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-stone-300">
+                {example.detail}
               </p>
             </div>
           ))}
