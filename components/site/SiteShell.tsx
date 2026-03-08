@@ -30,10 +30,10 @@ export default function SiteShell({
                 </span>
               </div>
               <p className="max-w-2xl text-sm leading-7 text-stone-300">
-                A disciplined software worker for small, accepted changes.
-                Every route shares the same editorial shell: measured
-                typography, graphite surfaces, and ember accents reserved for
-                proof points.
+                Built for people who want to delegate software work instead of
+                coding every step themselves or manually orchestrating an AI
+                assistant. The site stays restrained so the workflow and
+                repository evidence stay in focus.
               </p>
             </div>
             <nav

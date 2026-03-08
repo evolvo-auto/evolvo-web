@@ -53,6 +53,6 @@ describe("RootLayout", () => {
       default: "Evolvo",
       template: "%s | Evolvo",
     });
-    expect(metadata.description).toContain("small, safe, reviewable changes");
+    expect(metadata.description).toContain("delegating real software work");
   });
 });

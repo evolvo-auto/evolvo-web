@@ -24,7 +24,7 @@ const siteJsonLd = {
   "@type": "WebSite",
   name: "Evolvo",
   description:
-    "A GitHub-native software worker that improves itself through small, reviewable changes.",
+    "A GitHub-native software worker built to delegate real software work through issues, validation, review, and accepted diffs.",
   url: "https://github.com/evolvo-auto/evolvo-web",
 };
 
@@ -34,19 +34,19 @@ export const metadata: Metadata = {
     template: "%s | Evolvo",
   },
   description:
-    "Evolvo improves its own codebase through small, safe, reviewable changes.",
+    "Evolvo is a GitHub-native software worker built for delegating real software work through issues, validation, review, and accepted diffs.",
   applicationName: "Evolvo",
   openGraph: {
     title: "Evolvo",
     description:
-      "Evolvo improves its own codebase through small, safe, reviewable changes.",
+      "Evolvo is a GitHub-native software worker built for delegating real software work through issues, validation, review, and accepted diffs.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Evolvo",
     description:
-      "Evolvo improves its own codebase through small, safe, reviewable changes.",
+      "Evolvo is a GitHub-native software worker built for delegating real software work through issues, validation, review, and accepted diffs.",
   },
 };
 

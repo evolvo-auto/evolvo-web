@@ -7,27 +7,27 @@ import { formatPublishedAt, getAllPosts } from "../lib/posts";
 const operatingModel = [
   {
     label: "Inspect",
-    title: "Start from current state, not assumptions.",
+    title: "Start from the repository, not a vague prompt.",
     detail:
-      "Evolvo reads the repository, checks the active branch, and narrows the task before it edits anything.",
+      "Delegation only works when the agent can inspect the codebase, understand the issue, and narrow scope before it edits anything.",
   },
   {
     label: "Implement",
-    title: "Ship one bounded change at a time.",
+    title: "Advance the issue through one bounded patch.",
     detail:
-      "Each patch stays small enough to review and focused enough to explain without hand-waving.",
+      "The unit of progress is a reviewable diff, not a long conversation the human still has to translate into repository changes.",
   },
   {
     label: "Validate",
-    title: "Let the repository disagree.",
+    title: "Use repository checks as a gate.",
     detail:
-      "Lint, tests, builds, and startup checks are evidence, not ceremony. Green checks are required but never sufficient on their own.",
+      "Lint, tests, builds, and startup checks make the work falsifiable. Delegation is weak if the repository cannot disagree.",
   },
   {
     label: "Review",
-    title: "Keep only work that survives scrutiny.",
+    title: "Make acceptance explicit.",
     detail:
-      "Evolvo reviews the exact diff, looks for narrower alternatives, and rejects patches that are noisy, risky, or off-task.",
+      "Evolvo reviews the exact diff, looks for narrower alternatives, and keeps only work that deserves to survive into the next version.",
   },
 ] as const;
 
@@ -58,18 +58,19 @@ export default function HomePage() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)] lg:items-end">
           <div className="space-y-6">
             <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.32em] text-amber-400">
-              GitHub-native software worker
+              Delegation for software work
             </p>
             <div className="space-y-4">
               <h1 className="max-w-4xl text-4xl font-semibold tracking-[-0.05em] text-stone-50 sm:text-5xl lg:text-6xl">
-                Evolvo improves itself through reviewable work, not marketing language.
+                Stop choosing between coding everything yourself and manually steering an AI assistant.
               </h1>
               <p className="max-w-2xl text-base leading-8 text-stone-300 sm:text-lg">
-                Evolvo is a disciplined coding agent that inspects its own
-                repository, selects one bounded issue, implements the smallest
-                credible fix, validates the result, and keeps only changes that
-                survive scrutiny. The point is not to sound autonomous. The
-                point is to leave behind accepted diffs.
+                Most AI coding tools still leave the human holding the workflow
+                together: choosing the task, prompting the next step, checking
+                the diff, rerunning validation, and deciding what ships.
+                Evolvo is built to take on more of that ownership through
+                issues, bounded patches, repository checks, skeptical review,
+                and iteration. The goal is delegation, not autocomplete.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -92,7 +93,7 @@ export default function HomePage() {
           <div className="rounded-[2rem] border border-stone-800/80 bg-stone-900/70 p-5">
             <div className="flex items-center justify-between gap-4 border-b border-stone-800/80 pb-4">
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-stone-400">
-                Credibility model
+                Delegation model
               </p>
               <span className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-amber-300">
                 active
@@ -101,38 +102,38 @@ export default function HomePage() {
             <dl className="mt-4 space-y-4">
               <div className="rounded-2xl border border-stone-800/80 bg-stone-950/70 p-4">
                 <dt className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-stone-400">
-                  Input
+                  Problem
                 </dt>
                 <dd className="mt-2 text-sm font-semibold text-stone-100">
-                  Issue-backed tasks
+                  Manual orchestration
                 </dd>
                 <p className="mt-2 text-sm leading-7 text-stone-300">
-                  Evolvo works from concrete repository issues instead of vague
-                  aspirations.
+                  Standard AI coding tools can write code, but the human still
+                  has to hold the loop together.
                 </p>
               </div>
               <div className="rounded-2xl border border-stone-800/80 bg-stone-950/70 p-4">
                 <dt className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-stone-400">
-                  Unit
+                  Hand-off
                 </dt>
                 <dd className="mt-2 text-sm font-semibold text-stone-100">
-                  Small, reviewable diffs
+                  Issue-backed execution
                 </dd>
                 <p className="mt-2 text-sm leading-7 text-stone-300">
-                  Progress is measured in coherent patches that can be defended
-                  line by line.
+                  Evolvo takes a concrete issue, narrows the scope, and works
+                  toward one reviewable diff.
                 </p>
               </div>
               <div className="rounded-2xl border border-stone-800/80 bg-stone-950/70 p-4">
                 <dt className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-stone-400">
-                  Trust
+                  Safeguard
                 </dt>
                 <dd className="mt-2 text-sm font-semibold text-stone-100">
                   Validation plus skeptical review
                 </dd>
                 <p className="mt-2 text-sm leading-7 text-stone-300">
-                  Passing checks matter, but only alongside a diff review that
-                  tries to reject weak work.
+                  Delegation stays credible only when the work can be checked,
+                  challenged, and rejected when needed.
                 </p>
               </div>
             </dl>
@@ -140,9 +141,9 @@ export default function HomePage() {
         </div>
       </section>
       <PageSection
-        eyebrow="Operating model"
-        title="This system earns trust by showing the work."
-        description="Evolvo’s loop is intentionally strict. It begins with inspection, routes through bounded implementation and repository validation, and ends with an explicit accept-or-reject decision."
+        eyebrow="Why this exists"
+        title="Most AI coding tools still leave the operator doing the real management."
+        description="They autocomplete, explain, and suggest. The human still has to decide what to do next, keep the task bounded, run checks, inspect the diff, and move the work toward merge. Evolvo exists to carry more of that workflow itself."
       >
         <div className="grid gap-4 md:grid-cols-2">
           {operatingModel.map((step) => (
@@ -165,8 +166,8 @@ export default function HomePage() {
       </PageSection>
       <PageSection
         eyebrow="Working principles"
-        title="The posture stays practical, skeptical, and narrow."
-        description="Evolvo avoids grand rewrites and vague autonomy claims. The homepage should make that operational stance explicit instead of asking visitors to infer it."
+        title="Delegation only matters if the work stays controlled."
+        description="Evolvo is not trying to replace engineering judgment with vibes. The hand-off has to stay narrow enough to inspect, test, and reverse when the repository pushes back."
       >
         <div className="grid gap-4 lg:grid-cols-3">
           {principles.map((principle) => (
