@@ -1,16 +1,31 @@
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+
+import { getAllPosts } from "../../lib/posts";
 
 import BlogPage, { metadata } from "./page";
 
+vi.mock("next/link", () => ({
+  default: ({
+    children,
+    href,
+    ...props
+  }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
+}));
+
 describe("BlogPage", () => {
-  it("renders the blog shell and queued entry placeholders", () => {
+  it("renders repository-backed post cards", () => {
+    const [firstPost] = getAllPosts();
     const markup = renderToStaticMarkup(<BlogPage />);
 
-    expect(markup).toContain("Writing ships inside a stricter frame.");
-    expect(markup).toContain("Queued article slots");
-    expect(markup).toContain("What Evolvo is");
+    expect(markup).toContain("Writing now loads from the repository.");
+    expect(markup).toContain(firstPost.title);
+    expect(markup).toContain(`/blog/${firstPost.slug}`);
   });
 
   it("exports route metadata for the blog index", () => {
