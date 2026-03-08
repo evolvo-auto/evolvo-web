@@ -29,6 +29,7 @@ describe("HomePage", () => {
     expect(markup).toContain("Operating model");
     expect(markup).toContain("href=\"/blog\"");
     expect(markup).toContain(firstPost.title);
+    expect(markup).toContain("Get email updates");
     expect(markup).toContain("Open the repository");
   });
 });

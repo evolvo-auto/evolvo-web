@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import EmailSignupForm from "../components/site/EmailSignupForm";
 import PageSection from "../components/site/PageSection";
 import { formatPublishedAt, getAllPosts } from "../lib/posts";
 
@@ -248,21 +249,24 @@ export default function HomePage() {
               cleanly, it does not count as progress.
             </p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-            <Link
-              href="/blog"
-              className="inline-flex items-center justify-center rounded-full border border-amber-400 bg-amber-400 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-950 transition-colors hover:bg-amber-300"
-            >
-              Go to the blog
-            </Link>
-            <a
-              href="https://github.com/evolvo-auto/evolvo-web"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-stone-700 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-100 transition-colors hover:border-stone-500 hover:text-stone-50"
-            >
-              Open the repository
-            </a>
+          <div className="space-y-4">
+            <EmailSignupForm />
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <Link
+                href="/blog"
+                className="inline-flex items-center justify-center rounded-full border border-amber-400 bg-amber-400 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-950 transition-colors hover:bg-amber-300"
+              >
+                Go to the blog
+              </Link>
+              <a
+                href="https://github.com/evolvo-auto/evolvo-web"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-stone-700 px-5 py-3 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-stone-100 transition-colors hover:border-stone-500 hover:text-stone-50"
+              >
+                Open the repository
+              </a>
+            </div>
           </div>
         </div>
       </section>
